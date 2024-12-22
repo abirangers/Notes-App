@@ -10,7 +10,7 @@ export class UserController {
       res.status(200).json({
         data: response,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       next(error);
     }
   }
@@ -22,7 +22,7 @@ export class UserController {
       res.status(200).json({
         data: response,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       next(error);
     }
   }

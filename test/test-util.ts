@@ -21,3 +21,23 @@ export class UserTest {
     });
   }
 }
+
+export class NoteTest {
+  static async delete() {
+    await prismaClient.note.deleteMany({
+      where: {
+        username: "test",
+      },
+    });
+  }
+
+  static async create() {
+    await prismaClient.note.create({
+      data: {
+        title: "test",
+        content: "test",
+        username: "test",
+      },
+    });
+  }
+}

@@ -37,11 +37,3 @@ prismaClient.$on("warn", (event) => {
 prismaClient.$on("error", (event) => {
   logger.error(event);
 });
-
-export const connectToDatabase = async () => {
-  await prismaClient.$connect();
-};
-
-export const disconnectFromDatabase = async () => {
-  await prismaClient.$disconnect();
-};
