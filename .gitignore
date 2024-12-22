@@ -35,3 +35,35 @@ yarn-error.log*
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Additional build outputs
+.next
+.nuxt
+.output
+out/
+
+# Additional logs
+logs
+*.log
+
+# Additional testing
+.test
+__tests__/__snapshots__/
+*.snap
+
+# Cache directories
+.cache
+.temp
+.tmp
+.eslintcache
+.stylelintcache
+
+# Local environment files
+*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Additional Prisma
+prisma/*.db-journal

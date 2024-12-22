@@ -1,5 +1,4 @@
 import express from "express";
-import { UserController } from "../controller/user-controller";
 import { publicRouter } from "../route/public-api";
 import { errorMiddleware } from "../middleware/error-middleware";
 import { apiRouter } from "../route/api";

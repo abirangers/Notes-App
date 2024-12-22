@@ -16,13 +16,16 @@ export const authMiddleware = async (
     });
 
     if (user) {
-        req.user = user;
-        next();
-        return;
+      req.user = user;
+      next();
+      return;
     }
   }
 
-  res.status(401).json({
-    errors: "Unauthorized",
-  }).end()
+  res
+    .status(401)
+    .json({
+      errors: "Unauthorized",
+    })
+    .end();
 };

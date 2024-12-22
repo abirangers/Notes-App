@@ -5,11 +5,12 @@
 Endpoint : POST /api/users
 
 Request Body :
+
 ```json
 {
-    "username" : "aby",
-    "password" : "rahasia",
-    "name" : "Ahmad Aby Ayyasi"
+  "username": "aby",
+  "password": "rahasia",
+  "name": "Ahmad Aby Ayyasi"
 }
 ```
 

@@ -2,11 +2,11 @@ import { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import { ResponseError } from "../error/response-error";
 
-export const errorMiddleware = async (
+export const errorMiddleware = (
   error: Error,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   if (error instanceof ZodError) {
     res.status(400).json({

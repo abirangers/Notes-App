@@ -1,0 +1,21 @@
+# ignore all files in node_modules
+node_modules
+
+# ignore all files in build
+build
+
+# ignore all files in .next
+.next
+
+# ignore all files in .vscode
+.vscode
+
+# ignore coverage folder
+coverage
+
+# ignore all files in .env
+.env
+
+# ignore all files in .gitignore
+.gitignore
+

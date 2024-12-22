@@ -1,5 +1,4 @@
 import { z, ZodType } from "zod";
-import { CreateUserRequest } from "../model/user-model";
 
 export class UserValidation {
   static readonly REGISTER: ZodType = z.object({
