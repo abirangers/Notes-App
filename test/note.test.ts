@@ -2,7 +2,6 @@ import supertest from "supertest";
 import { web } from "../src/application/web";
 import { UserTest } from "./test-util";
 import { NoteTest } from "./test-util";
-import { logger } from "../src/application/logging";
 
 describe("POST /api/notes", () => {
   beforeEach(async () => {
@@ -15,12 +14,10 @@ describe("POST /api/notes", () => {
   });
 
   it("should be able to create note", async () => {
-    const loginResponse = await supertest(web)
-      .post("/api/users/login")
-      .send({
-        username: "test",
-        password: "rahasia",
-      });
+    const loginResponse = await supertest(web).post("/api/users/login").send({
+      username: "test",
+      password: "rahasia",
+    });
 
     const token = loginResponse.body?.data?.token;
 
@@ -33,8 +30,6 @@ describe("POST /api/notes", () => {
       .post("/api/notes")
       .set("X-API-TOKEN", token)
       .send(request);
-
-    logger.debug(response.body);
 
     expect(response.status).toBe(200);
     expect(response.body.data.title).toBe(request.title);

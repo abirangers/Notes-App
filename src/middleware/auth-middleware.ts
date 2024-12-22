@@ -22,9 +22,7 @@ export const authMiddleware = async (
     }
   }
 
-  res
-    .status(401)
-    .json({
-      errors: "Unauthorized",
-    });
+  res.status(401).json({
+    errors: "Unauthorized",
+  });
 };

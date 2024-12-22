@@ -4,10 +4,10 @@
   "main": "src/main.js",
   "scripts": {
     "test": "jest -i",
-"test:coverage": "jest --coverage -i",
+    "test:coverage": "jest --coverage -i",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "format": "prettier --write src/**/*.ts",
+    "format": "prettier --write .",
     "prepare": "husky"
   },
   "jest": {
@@ -50,9 +50,15 @@
     "typescript-eslint": "^8.18.1"
   },
   "lint-staged": {
-    "*.ts": [
+    "*": [
       "npm run format",
-      "npm run lint:fix"
+      "npm run lint:fix",
+      "npm run test"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

@@ -22,6 +22,8 @@ coverage/
 
 # Husky
 .husky/_/
+.husky/
+.husky/pre-commit
 
 # Linting/Editor
 *.eslintcache

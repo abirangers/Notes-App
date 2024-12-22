@@ -1,4 +1,3 @@
-import { logger } from "../src/application/logging";
 import { web } from "../src/application/web";
 import supertest from "supertest";
 import { UserTest } from "./test-util";
@@ -15,8 +14,6 @@ describe("POST /api/users", () => {
       name: "",
     });
 
-    logger.debug(response.body);
-
     expect(response.status).toBe(400);
     expect(response.body.errors).toBeDefined();
   });
@@ -27,8 +24,6 @@ describe("POST /api/users", () => {
       password: "test",
       name: "test",
     });
-
-    logger.debug(response.body);
 
     expect(response.status).toBe(200);
     expect(response.body.data.username).toBe("test");
@@ -50,8 +45,6 @@ describe("POST /api/users/login", () => {
       password: "rahasia",
     });
 
-    logger.debug(response.body);
-
     expect(response.status).toBe(200);
     expect(response.body.data.username).toBe("test");
     expect(response.body.data.name).toBe("test");
@@ -63,8 +56,6 @@ describe("POST /api/users/login", () => {
       username: "test",
       password: "salah",
     });
-
-    logger.debug(response.body);
 
     expect(response.status).toBe(401);
     expect(response.body.errors).toBeDefined();
