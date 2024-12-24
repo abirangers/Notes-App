@@ -75,3 +75,35 @@ describe("GET /api/notes/:noteId", () => {
     expect(response.body.errors).toBe("Note not found");
   });
 });
+
+describe("PUT /api/notes/:noteId", () => {
+  beforeEach(async () => {
+    await UserTest.create();
+    await NoteTest.create();
+  });
+
+  afterEach(async () => {
+    await NoteTest.delete();
+    await UserTest.delete();
+  });
+
+  it("Should be able to update note", async () => {
+    const loginResponse = await UserTest.login();
+
+    const request = {
+      title: "testTitle",
+      content: "testContent",
+    };
+
+    const response = await supertest(web)
+      .put("/api/notes/1")
+      .set("X-API-TOKEN", loginResponse)
+      .send(request);
+
+    logger.debug(response);
+
+    expect(response.status).toBe(200);
+    expect(response.body.data.title).toBe(request.title);
+    expect(response.body.data.content).toBe(request.content);
+  });
+});

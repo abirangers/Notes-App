@@ -7,3 +7,4 @@ apiRouter.use(authMiddleware);
 
 apiRouter.post("/api/notes", NoteController.create);
 apiRouter.get("/api/notes/:noteId", NoteController.get);
+apiRouter.put("/api/notes/:noteId", NoteController.update);

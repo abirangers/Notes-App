@@ -4,6 +4,7 @@ import {
   CreateNoteRequest,
   NoteResponse,
   toNoteResponse,
+  UpdateNoteRequest,
 } from "../model/note-model";
 import { NoteValidation } from "../validation/note-validation";
 import { Validation } from "../validation/validation";
@@ -45,6 +46,24 @@ export class NoteService {
 
   static async get(user: User, noteId: string): Promise<NoteResponse> {
     const note = await this.checkNoteMustExists(user, noteId);
+    return toNoteResponse(note);
+  }
+
+  static async update(
+    user: User,
+    request: UpdateNoteRequest
+  ): Promise<NoteResponse> {
+    const updateRequest = Validation.validate(NoteValidation.UPDATE, request);
+    await this.checkNoteMustExists(user, updateRequest.id);
+
+    const note = await prismaClient.note.update({
+      where: {
+        id: updateRequest.id,
+        username: user.username,
+      },
+      data: updateRequest,
+    });
+
     return toNoteResponse(note);
   }
 }
