@@ -41,4 +41,16 @@ export class NoteController {
       next(e);
     }
   }
+
+  static async delete(req: UserRequest, res: Response, next: NextFunction) {
+    try {
+      const noteId = req.params.noteId;
+      await NoteService.delete(req.user!, noteId);
+      res.status(200).json({
+        data: "OK",
+      });
+    } catch (e: unknown) {
+      next(e);
+    }
+  }
 }

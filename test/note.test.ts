@@ -107,3 +107,36 @@ describe("PUT /api/notes/:noteId", () => {
     expect(response.body.data.content).toBe(request.content);
   });
 });
+
+describe("DELETE /api/notes/:noteId", () => {
+  beforeEach(async () => {
+    await UserTest.create();
+    await NoteTest.create();
+  });
+
+  afterEach(async () => {
+    await NoteTest.delete();
+    await UserTest.delete();
+  });
+
+  it("should be able to delete note", async () => {
+    const loginResponse = await UserTest.login();
+
+    const response = await supertest(web)
+      .delete(`/api/notes/1`)
+      .set("X-API-TOKEN", loginResponse);
+
+    expect(response.status).toBe(200);
+  });
+
+  it("should reject if note not found", async () => {
+    const loginResponse = await UserTest.login();
+
+    const response = await supertest(web)
+      .delete(`/api/notes/2`)
+      .set("X-API-TOKEN", loginResponse);
+
+    expect(response.status).toBe(404);
+    expect(response.body.errors).toBe("Note not found");
+  });
+});
